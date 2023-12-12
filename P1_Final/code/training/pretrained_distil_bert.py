@@ -1,5 +1,6 @@
 from .base import LanguageModelBase
 from transformers import DistilBertTokenizer, DistilBertModel
+from preprocessing.dataset_loader import PletsDataset
 
 class PretrainedDistilBert(LanguageModelBase):
     """
@@ -10,7 +11,7 @@ class PretrainedDistilBert(LanguageModelBase):
         super().__init__()
         self.pretrained_set_name = pretrained_set_name
 
-    def train(self, data=None) -> 'PretrainedDistilBert':
+    def train(self, data: PletsDataset=None) -> 'PretrainedDistilBert':
         """
             This class uses a pretrained model and tokenizer, so this function only initializes them.
             Data provided as the parameter of this function is ignored.

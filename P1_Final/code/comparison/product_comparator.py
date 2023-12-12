@@ -47,7 +47,7 @@ class ProductComparator:
         """
         embed1 = self.embedding(text1)
         embed2 = self.embedding(text2)
-        sim = self.__similarity(embed1, embed2)
+        sim = (self.__similarity(embed1, embed2)+1)/2
         return sim
     
     def similarity(self, text1: str, text2: str) -> float:

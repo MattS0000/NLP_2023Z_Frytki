@@ -1,5 +1,6 @@
 from .base import LanguageModelBase
 from transformers import BertTokenizer, BertModel
+from preprocessing.dataset_loader import PletsDataset
 
 class PretrainedBert(LanguageModelBase):
     """
@@ -10,7 +11,7 @@ class PretrainedBert(LanguageModelBase):
         super().__init__()
         self.pretrained_set_name = pretrained_set_name
 
-    def train(self, data=None) -> 'PretrainedBert':
+    def train(self, data: PletsDataset=None) -> 'PretrainedBert':
         """
             This class uses a pretrained model and tokenizer, so this function only initializes them.
             Data provided as the parameter of this function is ignored.

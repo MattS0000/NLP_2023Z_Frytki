@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from preprocessing.dataset_loader import PletsDataset
 
 
 class LanguageModelBase(ABC):
@@ -10,7 +11,7 @@ class LanguageModelBase(ABC):
         self._tokenizer = None
 
     @abstractmethod
-    def train(self, data) -> 'LanguageModelBase':
+    def train(self, data: PletsDataset) -> 'LanguageModelBase':
         """
             Train the model with the given data. Trained models can be accessed through appropriate properties.
             This method needs to be overwritten in each class inheriting from this.
