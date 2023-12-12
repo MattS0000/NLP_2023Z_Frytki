@@ -1,10 +1,8 @@
 import time
-#import timeit for time measurement
-
+from comparison.product_comparator import ProductComparator
 from .table import print_table
-from training.base import LanguageModelBase
 
-def item_comparison(model: LanguageModelBase, text1: str, text2: str) -> None:
+def item_comparison(model: ProductComparator, text1: str, text2: str) -> None:
     """
         Prints a prettified table of the similarity between two items.
         Example output for 'red apple' and 'green apple':

@@ -1,7 +1,7 @@
 from torch.utils.data import DataLoader
-from textdataset import TripletsDataset
+from .dataset_loader import PletsDataset
 import numpy as np
-dataset = TripletsDataset(".")
+dataset = PletsDataset(".")
 dataloader = DataLoader(dataset,batch_size=5)
 
 for i in dataloader:
