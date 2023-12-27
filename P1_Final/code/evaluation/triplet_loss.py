@@ -7,8 +7,8 @@ import torch.nn.functional as F
 
 class TripletLoss(nn.Module):
     """
-    Triplet loss
-    Takes embeddings of an anchor sample, a positive sample and a negative sample
+        Triplet loss function in the form of a pytorch module.
+        Takes embeddings of an anchor sample, a positive sample and a negative sample.
     """
 
     def __init__(self, margin):

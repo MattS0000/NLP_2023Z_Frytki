@@ -1,3 +1,6 @@
+"""
+    Example code of how the dataset loader can be used.
+"""
 from torch.utils.data import DataLoader
 from .dataset_loader import PletsDataset
 import numpy as np

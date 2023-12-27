@@ -34,6 +34,12 @@ def fit(train_loader, val_loader, model, loss_fn, optimizer, scheduler, n_epochs
 
 
 def train_epoch(train_loader, model, loss_fn, optimizer, cuda, log_interval, metrics):
+    """
+        Train the model for one epoch.
+        The model is trained using the given loss function and optimizer.
+        Progress is printed every log_interval batches, and can be expanded with the metrics parameter.
+        If possible, training will be done on a GPU.
+    """
     for metric in metrics:
         metric.reset()
 
@@ -86,37 +92,3 @@ def train_epoch(train_loader, model, loss_fn, optimizer, cuda, log_interval, met
 
     total_loss /= (batch_idx + 1)
     return total_loss, metrics
-
-
-def test_epoch(val_loader, model, loss_fn, cuda, metrics):
-    with torch.no_grad():
-        for metric in metrics:
-            metric.reset()
-        model.eval()
-        val_loss = 0
-        for batch_idx, (data, target) in enumerate(val_loader):
-            target = target if len(target) > 0 else None
-            if not type(data) in (tuple, list):
-                data = (data,)
-            if cuda:
-                data = tuple(d.cuda() for d in data)
-                if target is not None:
-                    target = target.cuda()
-
-            outputs = model(*data)
-
-            if type(outputs) not in (tuple, list):
-                outputs = (outputs,)
-            loss_inputs = outputs
-            if target is not None:
-                target = (target,)
-                loss_inputs += target
-
-            loss_outputs = loss_fn(*loss_inputs)
-            loss = loss_outputs[0] if type(loss_outputs) in (tuple, list) else loss_outputs
-            val_loss += loss.item()
-
-            for metric in metrics:
-                metric(outputs, target, loss_outputs)
-
-    return val_loss, metrics

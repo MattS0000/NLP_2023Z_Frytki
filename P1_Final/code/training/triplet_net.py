@@ -5,6 +5,10 @@
 import torch.nn as nn
 
 class TripletNet(nn.Module):
+    """
+        A pytorch module serving as a proxy for embedding in the triplet loss function.
+        The network takes three inputs, and returns the embeddings of each input.
+    """
     def __init__(self, embedding_net):
         super(TripletNet, self).__init__()
         self.embedding_net = embedding_net

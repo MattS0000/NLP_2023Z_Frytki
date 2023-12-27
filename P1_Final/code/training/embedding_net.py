@@ -2,6 +2,11 @@ import torch
 import torch.nn as nn
 
 class EmbeddingNet(nn.Module):
+    """
+        A wrapper class for the embedding network in the form of a pytorch module.
+        The embedding network is a combination of a base model and a tokenizer.
+        The tokenizer is used to tokenize the input, and the base model is used to extract the embeddings.
+    """
     def __init__(self, base: nn.Module, tokenizer: nn.Module):
         super(EmbeddingNet, self).__init__()
         self.device = "cuda:0" if torch.cuda.is_available() else "cpu"
