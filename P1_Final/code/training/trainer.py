@@ -1,16 +1,13 @@
 from .base import LanguageModelBase
 from preprocessing.dataset_loader import PletsDataset
-from tqdm import tqdm
 import torch
 from torch.optim import lr_scheduler
 import torch.optim as optim
 from .embedding_net import EmbeddingNet
-from .tokenized_loader import TokenizedPletsDataset
-from torch.utils.data import DataLoader
+from .training_func import fit
+from .triplet_net import TripletNet
+from evaluation.triplet_loss import TripletLoss
 
-from siamese_triplet.trainer import fit
-from siamese_triplet.networks import TripletNet
-from siamese_triplet.losses import TripletLoss
 
 if torch.cuda.is_available():   
     device = torch.device("cuda")
